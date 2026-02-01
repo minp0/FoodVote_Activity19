@@ -22,8 +22,20 @@ function Food(props) {
 }
 
 
+function Box_food(props) {
+  const {topic,name,img,lore} = props       // set var
+  
+  return (
+    <div>
+      <h2>{topic}</h2>
+      <p>{name}</p>
+    </div>
+  );
+}
+
+
 function App() {
-  const [food_child,set_child] = useState("Hungry")       // sent setter_child to child function
+  /*const [food_child,set_child] = useState("Hungry")       // sent setter_child to child function
 
   return (
     <div className="App">
@@ -34,6 +46,25 @@ function App() {
       </header>
     </div>
   );
+  */
+
+
+  return (
+    <div class="main">
+      <h1> โหวตอาหาร </h1>
+      <div> 
+          <Box_food 
+            topic="อาหารคาว" 
+            name="ข้าวผัด"  
+          />
+          <Box_food 
+            topic="อาหารหวาน" 
+            name="บัวลอย"
+          />
+      </div>
+    </div>
+  )
+
 }
 
 export default App;

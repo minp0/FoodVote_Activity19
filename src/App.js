@@ -23,7 +23,8 @@ function Food(props) {
 
 function Box_food(props) {
   const {topic,name,img} = props       // set var
-  
+  const [point,set_point] = useState("0")
+
   return (
     <div>
       <style>
@@ -33,7 +34,7 @@ function Box_food(props) {
             display : flex;
             flex-direction: column;
             justify-content: flex-start;
-            align-items: flex-start;
+            align-items: center;
 
             border: 2px solid red;
 
@@ -41,6 +42,11 @@ function Box_food(props) {
             // height: 400px;
           
           }   
+
+          .lore {
+            display : flex;
+            flex-direction: row;
+          }
 
           img {
             width: 200px; 
@@ -52,17 +58,32 @@ function Box_food(props) {
         `}
       </style>
       <div className="container_food">
-        <h2 className="food">{topic}</h2>
-        <strong>{name}</strong>
-        <img src={img} />
 
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti iusto aliquid quia? 
-            Cupiditate illo molestias corporis, tempore libero reprehenderit eligendi. 
-            Architecto expedita omnis tenetur aperiam perspiciatis maiores laborum aspernatur! Rem et eos recusandae, 
-            maxime voluptate delectus cum facere, illum numquam totam corrupti enim, 
-            perspiciatis culpa iste voluptas? Dolorum, vitae et.
-          </p>
+        <div className="lore">
+          <div className="info"> 
+            <h2 className="food">{topic}</h2>
+            <strong>{name}</strong>
+
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti iusto aliquid quia? 
+                Cupiditate illo molestias corporis, tempore libero reprehenderit eligendi. 
+                Architecto expedita omnis tenetur aperiam perspiciatis maiores laborum aspernatur! Rem et eos recusandae, 
+                maxime voluptate delectus cum facere, illum numquam totam corrupti enim, 
+                perspiciatis culpa iste voluptas? Dolorum, vitae et.
+              </p>
+          </div>
+          
+          <div className="picture"> 
+            <img src={img} />
+          </div>
+        </div>
+
+        <div classname="button">
+          <button>  Click here ! </button>
+          <b> {point} </b>
+          <button>  Click here ! </button>
+        </div> 
+
       </div>
     </div>
   );

@@ -2,28 +2,39 @@ import logo from './logo.svg';
 import { useState } from 'react';
 
 
-function Food(props) {
-  const {title, callback} = props                       // define props parameter
-  const [name,set_name] = useState("min")               // set state
+// function Food(props) {
+//   const {title, callback} = props                       // define props parameter
+//   const [name,set_name] = useState("min")               // set state
 
-  const change_name = () => {                           // define function
-    set_name("Inferno")
-    callback("So hungary")                           // set parameter to parent object
-  }
+//   const change_name = () => {                           // define function
+//     set_name("Inferno")
+//     callback("So hungary")                           // set parameter to parent object
+//   }
   
-  return (
-    <div>
-      <a>{title}</a>
+//   return (
+//     <div>
+//       <a>{title}</a>
       
-      <button onClick = {change_name}> click here! {name} </button>
-    </div>
-  )
-}
+//       <button onClick = {change_name}> click here! {name} </button>
+//     </div>
+//   )
+// }
 
 
 function Box_food(props) {
   const {topic,name,img} = props       // set var
-  const [point,set_point] = useState("0")
+  const [point,set_point] = useState(0)
+
+  function counter_point(plus){
+    if(plus){
+      set_point("1")
+      console.log("press vote")
+    }
+    else{
+      set_point("-1")
+      console.log("press unvote")
+    }
+  }
 
   return (
     <div>
@@ -92,9 +103,9 @@ function Box_food(props) {
         </div>
 
         <div className="button">
-          <button>  Click to Vote </button>
-          <Box_score topic="อาหาร"/>
-          <button>  Click to Unvote </button>
+          <button onClick={() => counter_point(true)}> Click to Vote </button>
+          <Box_score score={point}/>
+          <button onClick={() => counter_point(false)}> Click to Unvote </button>
         </div> 
 
       </div>
@@ -104,7 +115,40 @@ function Box_food(props) {
 
 
 function Box_score(props){
-  const [score,set_score] = useState("0")
+  const [score,set_score] = useState("MIN")
+  const {plus} = props
+
+
+  // change score using props that parent pass parameter to child by props
+  let change_score = undefined
+  if(props.plus){
+    if(score=="MIN"){
+      change_score = 1
+    }
+    else if(score=="MAX"){
+      change_score = "MAX"
+      // callback function
+    }
+    else{
+      change_score = score+1
+    }
+    set_score(change_score)
+  }
+
+  else {
+    if(score=="MAX"){
+      change_score = 9
+    }
+    else if(score=="MIN"){
+      change_score = "MIN"
+      // callback function
+    }
+    else {
+      change_score = score - 1
+    }
+    set_score(change_score)
+  
+
   return(
     <div className="point">
       <style>

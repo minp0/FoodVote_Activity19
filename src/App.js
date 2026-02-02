@@ -36,11 +36,14 @@ function Box_food(props) {
             justify-content: flex-start;
             align-items: center;
 
-            border: 2px solid red;
+            border: 3px solid black;
+            border-radius: 20px;
 
             width: 60vw;
             // height: 400px;
-          
+            padding : 20px;
+
+            background-color: #FCECD7;
           }   
 
           .lore {
@@ -53,6 +56,9 @@ function Box_food(props) {
             align-self: flex-end;
           }
         
+          button {
+            height: 35px;
+          }
         
         
         `}
@@ -78,10 +84,10 @@ function Box_food(props) {
           </div>
         </div>
 
-        <div classname="button">
-          <button>  Click here ! </button>
+        <div className="button">
+          <button>  Click to Vote </button>
           <b> {point} </b>
-          <button>  Click here ! </button>
+          <button>  Click to Unvote </button>
         </div> 
 
       </div>
@@ -114,6 +120,10 @@ function App() {
         {`
           * {
             color: black;
+          }
+
+          h1 {
+            color: gold;
           }
         
           .main {

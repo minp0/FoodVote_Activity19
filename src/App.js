@@ -1,5 +1,4 @@
 import logo from './logo.svg';
-import './App.css';
 import { useState } from 'react';
 
 
@@ -23,12 +22,48 @@ function Food(props) {
 
 
 function Box_food(props) {
-  const {topic,name,img,lore} = props       // set var
+  const {topic,name,img} = props       // set var
   
   return (
     <div>
-      <h2>{topic}</h2>
-      <p>{name}</p>
+      <style>
+        {`
+          .container_food {
+
+            display : flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            border: 2px solid red;
+
+            width: 60vw;
+            // height: 400px;
+          
+          }   
+
+          img {
+            width: 200px; 
+            align-self: flex-end;
+          }
+        
+        
+        
+        `}
+      </style>
+      <div className="container_food">
+        <h2 className="food">{topic}</h2>
+        <strong>{name}</strong>
+        <img src={img} />
+
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti iusto aliquid quia? 
+            Cupiditate illo molestias corporis, tempore libero reprehenderit eligendi. 
+            Architecto expedita omnis tenetur aperiam perspiciatis maiores laborum aspernatur! Rem et eos recusandae, 
+            maxime voluptate delectus cum facere, illum numquam totam corrupti enim, 
+            perspiciatis culpa iste voluptas? Dolorum, vitae et.
+          </p>
+      </div>
     </div>
   );
 }
@@ -48,18 +83,38 @@ function App() {
   );
   */
 
+  //  style using javascript document
+  document.body.style.backgroundColor = "#696969"
+
 
   return (
-    <div class="main">
+    <div className="main">
+      <style>
+        {`
+          * {
+            color: black;
+          }
+        
+          .main {
+            display : flex;
+            flex-direction: column;
+            align-items: center;
+          }
+        
+        `
+        }
+      </style>
       <h1> โหวตอาหาร </h1>
-      <div> 
+      <div className="main"> 
           <Box_food 
             topic="อาหารคาว" 
             name="ข้าวผัด"  
+            img="https://yayoirestaurants.com/productimages/7995__AW-Yayoi-_800-x-800-px.jpg"
           />
           <Box_food 
             topic="อาหารหวาน" 
             name="บัวลอย"
+            img="https://www.ryoiireview.com/upload/article/202107/1626078739_a28004f9ed889dbddfb6c09599155f35.jpg"
           />
       </div>
     </div>
@@ -68,3 +123,10 @@ function App() {
 }
 
 export default App;
+
+
+
+
+const style_css = {
+
+}

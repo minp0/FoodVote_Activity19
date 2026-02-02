@@ -32,7 +32,7 @@ function Box_food(props) {
           .container_food {
 
             display : flex;
-            flex-direction: column;
+            flex-direction: column;         // ให้มันเป็น โซนบนที่มีรูปและข้อความ กับ โซนล่างที่เป็นปุ่มกับคะแนน
             justify-content: flex-start;
             align-items: center;
 
@@ -47,13 +47,20 @@ function Box_food(props) {
           }   
 
           .lore {
-            display : flex;
+            display : flex;               // row -|> left->info, right->picture
             flex-direction: row;
           }
 
           img {
             width: 200px; 
             align-self: flex-end;
+          }
+          
+          .button {
+            display: flex;
+            flex-directon: row;
+            flex-wrap: no-wrap;
+            align-items: center;
           }
         
           button {
@@ -86,7 +93,7 @@ function Box_food(props) {
 
         <div className="button">
           <button>  Click to Vote </button>
-          <b> {point} </b>
+          <Box_score topic="อาหาร"/>
           <button>  Click to Unvote </button>
         </div> 
 
@@ -95,6 +102,40 @@ function Box_food(props) {
   );
 }
 
+
+function Box_score(props){
+  const [score,set_score] = useState("0")
+  return(
+    <div className="point">
+      <style>
+        {`
+        .point {
+          background-color: #79E301;
+      
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+
+          width: 60px;
+          height: 45px;
+          margin: 0px 15px;
+
+          border: 3px solid #482A62;
+          border-radius: 10px;
+        } 
+        
+        b{
+          color: #A432FF;
+          font-size: 25px;
+          font-weight: bold;
+        }
+        `}
+      </style>
+      <b>{score}</b>
+    </div>
+  )
+}
 
 function App() {
   /*const [food_child,set_child] = useState("Hungry")       // sent setter_child to child function
@@ -154,10 +195,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
-const style_css = {
-
-}

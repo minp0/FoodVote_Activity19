@@ -1,25 +1,4 @@
-import logo from './logo.svg';
 import { useState } from 'react';
-
-
-// function Food(props) {
-//   const {title, callback} = props                       // define props parameter
-//   const [name,set_name] = useState("min")               // set state
-
-//   const change_name = () => {                           // define function
-//     set_name("Inferno")
-//     callback("So hungary")                           // set parameter to parent object
-//   }
-  
-//   return (
-//     <div>
-//       <a>{title}</a>
-      
-//       <button onClick = {change_name}> click here! {name} </button>
-//     </div>
-//   )
-// }
-
 
 function Box_food(props) {
   const {topic,name,img,callback} = props       // set var
@@ -33,7 +12,7 @@ function Box_food(props) {
       else if(score==9) change_score = "MAX"
       else if(score=="MAX"){
         change_score = "MAX"
-        callback("you shall not pass")      // callback function
+        callback("Cannot Vote more")      // callback function
       }
       else change_score = score+1
 
@@ -45,7 +24,7 @@ function Box_food(props) {
       else if(score==1) change_score = "MIN"
       else if(score=="MIN"){
         change_score = "MIN"
-        callback("you shall not down")      // callback function
+        callback("Cannot unvote")      // callback function
       }
       else change_score = score - 1
     
@@ -87,7 +66,7 @@ function Box_food(props) {
           
           .button {
             display: flex;
-            flex-directon: row;
+            flex-direction: row;
             flex-wrap: no-wrap;
             align-items: center;
           }
@@ -148,9 +127,10 @@ function Box_score(props){
           justify-content: center;
           align-items: center;
 
-          width: 60px;
+          width: fit-content;
           height: 45px;
           margin: 0px 15px;
+          padding: 0px 7px;
 
           border: 3px solid #482A62;
           border-radius: 10px;
@@ -169,25 +149,11 @@ function Box_score(props){
 }
 
 function App() {
-  /*const [food_child,set_child] = useState("Hungry")       // sent setter_child to child function
 
-  return (
-    <div className="App">
-      <header className="App-header">
-          <Food title="apple" callback={set_child}/> 
-          <a href = "#"> {food_child} </a>
-          <Food title="kiwi" callback={set_child}  /> 
-      </header>
-    </div>
-  );
-  */
-
-  // handle_callback from child
   const alert_callback = (text_alert) => {
     alert(text_alert)
   }
   
-
   //  style using javascript document
   document.body.style.backgroundColor = "#696969"
 

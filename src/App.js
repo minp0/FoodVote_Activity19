@@ -22,18 +22,36 @@ import { useState } from 'react';
 
 
 function Box_food(props) {
-  const {topic,name,img} = props       // set var
-  const [point,set_point] = useState(0)
+  const {topic,name,img,callback} = props       // set var
+  const [score,set_score] = useState("MIN")
 
+  // make function to change value and pass to child node(Box_score)
   function counter_point(plus){
+    let change_score = undefined
     if(plus){
-      set_point("1")
-      console.log("press vote")
+      if(score=="MIN") change_score = 1
+      else if(score==9) change_score = "MAX"
+      else if(score=="MAX"){
+        change_score = "MAX"
+        callback("you shall not pass")      // callback function
+      }
+      else change_score = score+1
+
+      set_score(change_score)
     }
-    else{
-      set_point("-1")
-      console.log("press unvote")
+
+    else {
+      if(score=="MAX") change_score = 9
+      else if(score==1) change_score = "MIN"
+      else if(score=="MIN"){
+        change_score = "MIN"
+        callback("you shall not down")      // callback function
+      }
+      else change_score = score - 1
+    
+      set_score(change_score)
     }
+    
   }
 
   return (
@@ -104,7 +122,7 @@ function Box_food(props) {
 
         <div className="button">
           <button onClick={() => counter_point(true)}> Click to Vote </button>
-          <Box_score score={point}/>
+          <Box_score points={score}/>
           <button onClick={() => counter_point(false)}> Click to Unvote </button>
         </div> 
 
@@ -115,40 +133,9 @@ function Box_food(props) {
 
 
 function Box_score(props){
-  const [score,set_score] = useState("MIN")
-  const {plus} = props
-
+  const {points} = props
 
   // change score using props that parent pass parameter to child by props
-  let change_score = undefined
-  if(props.plus){
-    if(score=="MIN"){
-      change_score = 1
-    }
-    else if(score=="MAX"){
-      change_score = "MAX"
-      // callback function
-    }
-    else{
-      change_score = score+1
-    }
-    set_score(change_score)
-  }
-
-  else {
-    if(score=="MAX"){
-      change_score = 9
-    }
-    else if(score=="MIN"){
-      change_score = "MIN"
-      // callback function
-    }
-    else {
-      change_score = score - 1
-    }
-    set_score(change_score)
-  
-
   return(
     <div className="point">
       <style>
@@ -176,7 +163,7 @@ function Box_score(props){
         }
         `}
       </style>
-      <b>{score}</b>
+      <b>{points}</b>
     </div>
   )
 }
@@ -195,9 +182,14 @@ function App() {
   );
   */
 
+  // handle_callback from child
+  const alert_callback = (text_alert) => {
+    alert(text_alert)
+  }
+  
+
   //  style using javascript document
   document.body.style.backgroundColor = "#696969"
-
 
   return (
     <div className="main">
@@ -226,11 +218,13 @@ function App() {
             topic="อาหารคาว" 
             name="ข้าวผัด"  
             img="https://yayoirestaurants.com/productimages/7995__AW-Yayoi-_800-x-800-px.jpg"
+            callback = {alert_callback}
           />
           <Box_food 
             topic="อาหารหวาน" 
             name="บัวลอย"
             img="https://www.ryoiireview.com/upload/article/202107/1626078739_a28004f9ed889dbddfb6c09599155f35.jpg"
+            callback = {alert_callback}
           />
       </div>
     </div>
